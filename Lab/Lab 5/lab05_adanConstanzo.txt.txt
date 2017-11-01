@@ -1,0 +1,32 @@
+
+--1
+--4 pts) Implement a search algorithm that searches through a list for Int n and returns 
+--the value in the list after n. If there is no value, or the list is empty, return -1. E.g., findNext 5 [1,2,3,4,5,6] 
+--should return 6, while findNext 5 [0, 10, 20, 30] returns -1.
+
+findNext :: Int-> [Int] -> Int
+findNext a [] = -1
+findNext a [x] = -1
+findNext a (x:xs)
+  | a == x = head xs
+  | otherwise = findNext a (xs)
+
+--2
+--2 pts) Implement a search algorithm that searches through a list for Int n and returns the value in the list before n. If there is no value, 
+--or the list is empty, return -1. E.g., findPrev 5 [1,2,3,4,5,6] should return 4, while findPrev 5 [0, 10, 20, 30] returns -1.
+
+findPrev :: Int -> [Int] -> Int
+findPrev a [] = -1
+findPrev a [x] = -1
+findPrev a (x:y:xs)
+  | a == y = x 
+  | otherwise = findPrev a (y:xs)
+
+--3
+--4pts) Implement a function that calculates a digit sum of an Int --- adds all the digits  of the int together, 
+--returning an Int. You can define a second helper function. At least one of your functions must use recursion.
+-- 1234
+-- 1+2+3+4 = 10
+calcDigit:: Int -> Int
+calcDigit 0 = 0
+calcDigit x = calcDigit( div x 10 ) + mod x 10

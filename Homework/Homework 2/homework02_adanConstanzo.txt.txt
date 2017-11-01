@@ -1,0 +1,109 @@
+
+--1. 2pts) Create a function, using partial application of functions, that sees if a single Int is divisible by 5.
+--It takes in an Int and returns a Bool. (edited from original to be a bit easier)
+
+checkMod5 :: Int->Bool
+checkMod5 = (== 0) . (`mod` 5) 
+
+--2 2. 2pts) Write a function that checks if every other letter of a string is between 'a' and 'f' 
+--(the remaining letters don't matter, start with the first letter in the string, skip the second, and so on).
+--The function takes in a String and returns a Bool. Use partial application at least once. Empty string returns True. 
+--(edited to specify what empty string returns, some clarification added).
+
+checkatf :: String->Bool
+checkatf "" = True
+checkatf [x] = (`elem` ['a' .. 'f']) x 
+checkatf (x:y:xs)
+  | (`elem` ['a' .. 'f']) x  = checkatf xs
+  | otherwise = False
+
+
+--3. 4pts) Write a function that takes two lists, zips them, then maps the result to a list 
+--of sums of the numbers in the tuples. E.g., [1, 2, 3] [4, 5, 6] gets zipped 
+--to [(1, 4), (2, 5), (3,6)], then gets mapped to [5, 7, 9].
+zipAndMap (x) (y) = map (\(x,y) -> x+y ) (zip (x) (y))
+
+
+--4. 4pts) Write a function that maps a list of Strings that may have multiple words to Strings 
+--with only the first word left. E.g. ["Today is Thursday", "Banquet", "unreal games"] becomes ["Today", "Banquet", "unreal"].
+returnAfterSpace :: String->String
+returnAfterSpace "" = ""
+returnAfterSpace (x:xs)
+  | x == ' ' = ""
+  | otherwise = x : returnAfterSpace(xs)
+
+returnAfter:: [String]->[String]
+returnAfter [] = []
+returnAfter (x:xs) = map (\x -> returnAfterSpace x) [x] ++ returnAfter(xs)
+
+--5. 4pts) Write a function that takes a two dimensional matrix of Strings and transforms all empty strings to "0". 
+setEmptyStrintToZero::String->String
+setEmptyStrintToZero "" = "0"
+setEmptyStrintToZero (x) = (x)
+
+transFormEmptyString :: [[String]] -> [[String]]
+transFormEmptyString  = map (map (setEmptyStrintToZero))
+
+--6. 4pts) Write a function that converts [a, b, c, d, . . . ] to [(a,b), (c, d), . . .], where a, b, c, and d can be any type.
+makeTuple [] = []
+makeTuple (x:y:z) = (x,y) : makeTuple z
+
+
+--7. 2pts) Using the previous function, convert each tuple 
+--to a product of its two elements, using foldl and a lambda expression.
+{- Nasty Fix... Gotta work on it later. -}
+productOfTwoTuple = (reverse) . foldl (\acc (a,b) -> a*b : acc) [] . (makeTuple) 
+
+
+--8. 1pt) Using scanl, write a function that takes a list of Ints and make a list of cumulative sums. 
+listOfInt = scanl (+) 0  
+
+{-9. 1pt) Consider this function:
+
+applyThrice :: (Int -> Int) -> Int -> Int
+applyThrice f x = f (f (f x))
+
+Use $ to make the second line more readable
+-}
+applyThrice::(Int->Int) -> Int -> Int
+applyThrice f x = f $ f $ f x
+
+{-10. 2pts) Convert:
+
+isLowerCase :: Char -> Bool
+isLowerCase x = x `elem` ['a' .. 'z']
+
+to point free style
+-}
+isLowerCase :: Char -> Bool
+isLowerCase = (`elem` ['a'..'z'])
+
+
+--11. 4pts) Sort a list of Strings by length of the first word in the strings (if the strings have more than one word)
+
+getMin (x:xs)
+  | (length $ returnAfterSpace x) == (minimum $ map(\x -> length x) $ returnAfter (x:xs)) = x
+  | otherwise = getMin(xs)
+
+removeMin [] = []
+removeMin (x:xs)
+  | (length $ returnAfterSpace x) == (minimum $ map(\x -> length x) $ returnAfter (x:xs)) = (xs)
+  | otherwise = x : removeMin(xs)
+
+doSortWithString [] = []
+doSortWithString (x:xs) = [getMin(x:xs)] ++ doSortWithString(removeMin(x:xs))
+
+{- 
+12. 5pts) Pack repeats in a list of Chars into separate lists, resulting in a sorted list of lists: E.g., 
+
+['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 
+             'a', 'd', 'e', 'e', 'e', 'e'] becomes
+["aaaaaa","b","cc","d","eeee"]
+Use whatever techniques you know so far. 
+(Note, this is a modified version of an online problem, so solutions to that problem, should you Google it, won't work here).
+-}
+
+getAllOf x = filter (==x)
+getEveyrthingElse x = filter (/=x)
+getAll [] = []
+getAll (x:xs) = getAllOf(x) (x:xs) : getAll( getEveyrthingElse x (xs))

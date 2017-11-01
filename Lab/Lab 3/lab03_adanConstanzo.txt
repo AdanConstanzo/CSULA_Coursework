@@ -1,0 +1,51 @@
+--1 
+square::Double->Double
+square x = x*x
+
+addTwo::Double->Double->Double
+addTwo x y = x+y
+
+addThree::Double -> Double -> Double -> Double
+addThree x y z = x + y + z
+
+--2
+square'::(Num a)=>a->a
+square' x = x*x
+
+--3
+addStringToFloat :: String->Float
+addStringToFloat x  = read x +3.14
+
+--4
+outIt::Int->String
+outIt it
+ | it == 1 = "Once"
+ | it == 2 = "Twice"
+ | it == 3 = "Thrice"
+ | it >= 4 = "Don't know how to say that in English."
+
+--5
+first::(a,b,c,d) -> a
+first (x,_,_,_) = x
+
+second::(a,b,c,d) -> b
+second(_,x,_,_) = x
+
+third::(a,b,c,d) -> c
+third (_,_,x,_) = x
+
+fourth::(a,b,c,d) -> d
+fourth (_,_,_,x) = x
+
+--6
+expo :: Int->Int->Int
+expo x 0 = 1
+expo x 1 = x
+expo x y = x * (expo x (y-1))
+
+--7
+multList :: [Int] -> Int
+multList [] = 0
+multList (x:[]) = x
+multList (x:y:[]) = x*y
+multList (x:y:z:xs) = x*y*z

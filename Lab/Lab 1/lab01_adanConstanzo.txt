@@ -1,0 +1,2 @@
+cir x = 3.14*x*x
+hypo a b = a*a + b*b
