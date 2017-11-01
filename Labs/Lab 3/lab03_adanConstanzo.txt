@@ -1,0 +1,265 @@
+Adan Constanzo
+
+1. The title 'Time Flies' now has a new track, the 11th track 'Spring', which is 150 seconds long and has only a MP3 file. Insert the new track into Tracks table.
+
+Insert into Tracks Values(4,11,'Spring',150,1,1);
+
+SELECT * FROM Tracks;
++---------+----------+--------------------------------+---------------+------+---------+
+| TitleID | TrackNum | TrackTitle                     | LengthSeconds | MP3  | RealAud |
++---------+----------+--------------------------------+---------------+------+---------+
+|       1 |        1 | Hottie                         |           233 |    1 |       1 |
+|       1 |        2 | Goodtime March                 |           293 |    1 |       1 |
+|       1 |        3 | TV Day                         |           305 |    1 |       1 |
+|       1 |        4 | Call Me an Idiot               |           315 |    1 |       1 |
+|       1 |        5 | 25                             |           402 |    1 |       1 |
+|       1 |        6 | Palm                           |           322 |    1 |       1 |
+|       1 |        7 | Front Door                     |           192 |    1 |       1 |
+|       1 |        8 | Where's the Rain               |           175 |    1 |       1 |
+|       3 |        1 | Fat Cheeks                     |           352 |    1 |       1 |
+|       3 |        2 | Rocky and Natasha              |           283 |    1 |       1 |
+|       3 |        3 | Dweeb                          |           273 |    1 |       1 |
+|       3 |        4 | Funky Town                     |           252 |    1 |       1 |
+|       3 |        5 | Shoes                          |           182 |    1 |       1 |
+|       3 |        6 | Time In - In Time              |           129 |    1 |       1 |
+|       3 |        7 | Wooden Man                     |           314 |    0 |       0 |
+|       3 |        8 | UPS                            |            97 |    0 |       0 |
+|       3 |        9 | Empty                          |           182 |    0 |       0 |
+|       3 |       10 | Burrito                        |            65 |    0 |       0 |
+|       4 |        1 | Bob's Dream                    |           185 |    1 |       1 |
+|       4 |        2 | My Wizard                      |           233 |    1 |       1 |
+|       4 |        3 | Third's Folly                  |           352 |    1 |       1 |
+|       4 |        4 | Leather                        |           185 |    1 |       1 |
+|       4 |        5 | Hot Cars Cool Nights           |           192 |    1 |       1 |
+|       4 |        6 | Music in You                   |           204 |    1 |       1 |
+|       4 |        7 | Don't Care About Time          |           221 |    1 |       1 |
+|       4 |        8 | Kiss                           |           218 |    1 |       1 |
+|       4 |        9 | Pizza Box                      |           183 |    1 |       1 |
+|       4 |       10 | Goodbye                        |           240 |    1 |       1 |
+|       5 |        1 | Song 1                         |           285 |    1 |       1 |
+|       5 |        2 | Song 2                         |           272 |    1 |       1 |
+|       5 |        3 | Song 3                         |           299 |    1 |       1 |
+|       5 |        4 | Song 4                         |           201 |    1 |       1 |
+|       5 |        5 | Song 5                         |           198 |    1 |       0 |
+|       5 |        6 | Song 6                         |           254 |    1 |       0 |
+|       5 |        7 | Song 7                         |           303 |    1 |       1 |
+|       5 |        8 | Song 8                         |           230 |    1 |       0 |
+|       5 |        9 | Song 8 and 1/2                 |            45 |    1 |       0 |
+|       6 |        1 | Violin Sonata No. 1 in D Major |           511 |    1 |       1 |
+|       6 |        2 | Violin Sonata No. 2 in A Major |           438 |    1 |       1 |
+|       6 |        3 | Violin Sonata No. 4 in E Minor |           821 |    1 |       0 |
+|       6 |        4 | Piano Sonata No. 1             |           493 |    1 |       0 |
+|       6 |        5 | Clarinet Sonata in E Flat      |           399 |    1 |       0 |
+|       7 |        1 | I Don't Know                   |           201 |    1 |       0 |
+|       7 |        2 | What's the Day                 |           332 |    1 |       0 |
+|       7 |        3 | Sirius                         |           287 |    1 |       0 |
+|       7 |        4 | Hamburger Blues                |           292 |    1 |       0 |
+|       7 |        5 | Road Trip                      |           314 |    1 |       0 |
+|       7 |        6 | Meeting You                    |           321 |    1 |       1 |
+|       7 |        7 | Improv 34                      |           441 |    1 |       1 |
+|       7 |        8 | Hey                            |           288 |    1 |       1 |
+|       4 |       11 | Spring                         |           150 |    1 |       1 |
++---------+----------+--------------------------------+---------------+------+---------+
+
+
+2. Create a new table called Members2 with the fields as the Members table. (Use DESCRIBE to check if Members2 table is created)
+
+mysql> describe Members2;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| MemberID   | int(11)     | YES  |     | NULL    |       |
+| FirstName  | varchar(25) | YES  |     | NULL    |       |
+| LastName   | varchar(25) | YES  |     | NULL    |       |
+| Address    | varchar(60) | YES  |     | NULL    |       |
+| City       | varchar(25) | YES  |     | NULL    |       |
+| Region     | varchar(15) | YES  |     | NULL    |       |
+| PostalCode | varchar(10) | YES  |     | NULL    |       |
+| Country    | varchar(20) | YES  |     | NULL    |       |
+| HomePhone  | varchar(16) | YES  |     | NULL    |       |
+| WorkPhone  | varchar(16) | YES  |     | NULL    |       |
+| EMail      | varchar(40) | YES  |     | NULL    |       |
+| Gender     | char(1)     | YES  |     | NULL    |       |
+| Birthday   | date        | YES  |     | NULL    |       |
+| SalesID    | smallint(6) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+
+
+3. Populate Members2 the content of the Members table.
+
+Insert into Members2 select * from Members;
+
+ select * from Members2;
++----------+-----------+-----------+----------------------+--------------+--------+------------+---------+------------+------------+------------------------+--------+------------+---------+
+| MemberID | FirstName | LastName  | Address              | City         | Region | PostalCode | Country | HomePhone  | WorkPhone  | EMail                  | Gender | Birthday   | SalesID |
++----------+-----------+-----------+----------------------+--------------+--------+------------+---------+------------+------------+------------------------+--------+------------+---------+
+|       10 | Roberto   | Alvarez   | Rt 1                 | Anderson     | IN     | 46019      | USA     | 7651552983 | 7651628837 | ral@mightyhostl.com    | M      | 1968-01-18 |       2 |
+|       31 | Jose      | MacArthur | 51444 Vine           | Santa Rosa   | CA     | 99999      | USA     | 6331289393 | NULL       | jmac@dowop.com         | M      | 1978-06-24 |       1 |
+|       13 | Mary      | Chrisman  | 1772 East 117th      | Fishers      | IN     | 46123      | USA     | 3171820387 | NULL       | mjc17@daviscorp.com    | F      | 1973-03-01 |       1 |
+|       15 | Warren    | Boyer     | 167 Alamo Dr         | Alverez      | TX     | 75601      | USA     | 8221722883 | NULL       | wbman@uptime.net       | M      | 1969-04-19 |       2 |
+|       32 | Doug      | Finney    | 2020 Dubois          | Savannah     | GA     | 30003      | USA     | 9821222929 | NULL       | fennyd@bitspeed.com    | M      | 1963-08-04 |       3 |
+|       19 | Terry     | Irving    | 18a 7th St           | Tybee Island | GA     | 30004      | USA     | 5411252093 | NULL       | NULL                   | M      | 1959-06-22 |       3 |
+|       21 | Michelle  | Henderson | 201 Bonaventure      | Savannah     | GA     | 30005      | USA     | 8221928273 | NULL       | NULL                   | F      | 1964-03-15 |       2 |
+|       34 | William   | Morrow    | PO Box 1882          | New Rochelle | NY     | 10014      | USA     | 9981722928 | NULL       | wmorrow@wmorrow.com    | M      | 1965-03-17 |       2 |
+|       29 | Frank     | Payne     | 5412 Clinton         | New Rochelle | NY     | 10014      | USA     | 9981737464 | NULL       | NULL                   | M      | 1960-01-17 |       1 |
+|       35 | Aiden     | Franks    | 167 East 38th        | Alverez      | TX     | 75601      | USA     | 8321729283 | 8321723833 | kosmo@ispl.com         | M      | 1983-09-02 |       2 |
+|        3 | Bryce     | Sanders   | PO Box 1292          | Peterson     | NC     | 27104      | USA     | 6441824283 | NULL       | bs@cookery.com         | M      | 1966-06-11 |       2 |
+|       14 | Carol     | Wanner    | 787 Airport Rd       | Alverez      | TX     | 75601      | USA     | 6831223944 | NULL       | NULL                   | F      | 1978-11-08 |       3 |
+|       33 | Brian     | Ranier    | 23 Gregory Lane      | London       | ONT    | M6Y 2Y7    | Canada  | 6231842933 | NULL       | NULL                   | M      | 1957-10-19 |       3 |
+|        7 | Marcellin | Lambert   | 142 Sample Rd        | Alexandria   | VA     | 20102      | USA     | 8331929302 | NULL       | mlambert@corkscrew.com | M      | 1959-11-14 |       3 |
+|        8 | Caroline  | Kale      | 1515 Stone Church Rd | Allen        | VA     | 20321      | USA     | 7321223742 | NULL       | NULL                   | F      | 1956-05-30 |       3 |
+|        9 | Kerry     | Fernandez | 15 Midway            | Lynchberg    | VA     | 21223      | USA     | 2211229384 | 2211223939 | NULL                   | M      | 1962-01-16 |       1 |
+|       26 | Tony      | Wong      | 115 Maple St         | McKensie     | ONT    | M8H 3T1    | Canada  | 3311692832 | 3311692822 | twong@tamilla.org      | M      | 1955-11-01 |       2 |
+|       18 | Bonnie    | Taft      | RR4                  | Alamaba      | VT     | 05303      | USA     | 3721223292 | NULL       | taffygirl@signon.com   | F      | 1960-09-21 |       1 |
+|       20 | Louis     | Holiday   | 15 Davis Ct          | Clinton      | IL     | 63882      | USA     | 1451223838 | NULL       | NULL                   | M      | 1969-07-27 |       2 |
+|       22 | Bobby     | Crum      | RR2                  | Pine         | VT     | 05412      | USA     | 1831828211 | NULL       | NULL                   | M      | 1965-06-10 |       3 |
+|       28 | Vic       | Cleaver   | 100 Maple            | Reston       | VT     | 05544      | USA     | 8111839292 | NULL       | NULL                   | M      | 1957-02-10 |       2 |
+|       30 | Roberto   | Goe       | 14 Gray Rd           | Columbus     | OH     | 48110      | USA     | 2771123943 | NULL       | NULL                   | M      | 1967-09-12 |       1 |
+|       36 | Davis     | Goodman   | 2020 Country Rd      | Columbus     | OH     | 48318      | USA     | 2771152882 | 2771128833 | goody@irvingnet.com    | M      | 1980-10-27 |       2 |
++----------+-----------+-----------+----------------------+--------------+--------+------------+---------+------------+------------+------------------------+--------+------------+---------+
+
+
+
+4. The area code for Columbus, Ohio has been changed from 277 to 899. Update the homephone and workphone numbers of all members in Members2 table accordingly.
+
+mysql> Update Members2
+    -> Set HomePhone = Concat("899",Right(HomePhone,char_length(HomePhone)-3)),
+    -> WorkPhone = Concat("899",Right(WorkPhone,char_length(WorkPhone)-3))
+    -> Where HomePhone like "277%" or WorkPhone like "277%";
+Query OK, 2 rows affected (0.04 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from Members2;
++----------+-----------+-----------+----------------------+--------------+--------+------------+---------+------------+------------+------------------------+--------+------------+---------+
+| MemberID | FirstName | LastName  | Address              | City         | Region | PostalCode | Country | HomePhone  | WorkPhone  | EMail                  | Gender | Birthday   | SalesID |
++----------+-----------+-----------+----------------------+--------------+--------+------------+---------+------------+------------+------------------------+--------+------------+---------+
+|       10 | Roberto   | Alvarez   | Rt 1                 | Anderson     | IN     | 46019      | USA     | 7651552983 | 7651628837 | ral@mightyhostl.com    | M      | 1968-01-18 |       2 |
+|       31 | Jose      | MacArthur | 51444 Vine           | Santa Rosa   | CA     | 99999      | USA     | 6331289393 | NULL       | jmac@dowop.com         | M      | 1978-06-24 |       1 |
+|       13 | Mary      | Chrisman  | 1772 East 117th      | Fishers      | IN     | 46123      | USA     | 3171820387 | NULL       | mjc17@daviscorp.com    | F      | 1973-03-01 |       1 |
+|       15 | Warren    | Boyer     | 167 Alamo Dr         | Alverez      | TX     | 75601      | USA     | 8221722883 | NULL       | wbman@uptime.net       | M      | 1969-04-19 |       2 |
+|       32 | Doug      | Finney    | 2020 Dubois          | Savannah     | GA     | 30003      | USA     | 9821222929 | NULL       | fennyd@bitspeed.com    | M      | 1963-08-04 |       3 |
+|       19 | Terry     | Irving    | 18a 7th St           | Tybee Island | GA     | 30004      | USA     | 5411252093 | NULL       | NULL                   | M      | 1959-06-22 |       3 |
+|       21 | Michelle  | Henderson | 201 Bonaventure      | Savannah     | GA     | 30005      | USA     | 8221928273 | NULL       | NULL                   | F      | 1964-03-15 |       2 |
+|       34 | William   | Morrow    | PO Box 1882          | New Rochelle | NY     | 10014      | USA     | 9981722928 | NULL       | wmorrow@wmorrow.com    | M      | 1965-03-17 |       2 |
+|       29 | Frank     | Payne     | 5412 Clinton         | New Rochelle | NY     | 10014      | USA     | 9981737464 | NULL       | NULL                   | M      | 1960-01-17 |       1 |
+|       35 | Aiden     | Franks    | 167 East 38th        | Alverez      | TX     | 75601      | USA     | 8321729283 | 8321723833 | kosmo@ispl.com         | M      | 1983-09-02 |       2 |
+|        3 | Bryce     | Sanders   | PO Box 1292          | Peterson     | NC     | 27104      | USA     | 6441824283 | NULL       | bs@cookery.com         | M      | 1966-06-11 |       2 |
+|       14 | Carol     | Wanner    | 787 Airport Rd       | Alverez      | TX     | 75601      | USA     | 6831223944 | NULL       | NULL                   | F      | 1978-11-08 |       3 |
+|       33 | Brian     | Ranier    | 23 Gregory Lane      | London       | ONT    | M6Y 2Y7    | Canada  | 6231842933 | NULL       | NULL                   | M      | 1957-10-19 |       3 |
+|        7 | Marcellin | Lambert   | 142 Sample Rd        | Alexandria   | VA     | 20102      | USA     | 8331929302 | NULL       | mlambert@corkscrew.com | M      | 1959-11-14 |       3 |
+|        8 | Caroline  | Kale      | 1515 Stone Church Rd | Allen        | VA     | 20321      | USA     | 7321223742 | NULL       | NULL                   | F      | 1956-05-30 |       3 |
+|        9 | Kerry     | Fernandez | 15 Midway            | Lynchberg    | VA     | 21223      | USA     | 2211229384 | 2211223939 | NULL                   | M      | 1962-01-16 |       1 |
+|       26 | Tony      | Wong      | 115 Maple St         | McKensie     | ONT    | M8H 3T1    | Canada  | 3311692832 | 3311692822 | twong@tamilla.org      | M      | 1955-11-01 |       2 |
+|       18 | Bonnie    | Taft      | RR4                  | Alamaba      | VT     | 05303      | USA     | 3721223292 | NULL       | taffygirl@signon.com   | F      | 1960-09-21 |       1 |
+|       20 | Louis     | Holiday   | 15 Davis Ct          | Clinton      | IL     | 63882      | USA     | 1451223838 | NULL       | NULL                   | M      | 1969-07-27 |       2 |
+|       22 | Bobby     | Crum      | RR2                  | Pine         | VT     | 05412      | USA     | 1831828211 | NULL       | NULL                   | M      | 1965-06-10 |       3 |
+|       28 | Vic       | Cleaver   | 100 Maple            | Reston       | VT     | 05544      | USA     | 8111839292 | NULL       | NULL                   | M      | 1957-02-10 |       2 |
+|       30 | Roberto   | Goe       | 14 Gray Rd           | Columbus     | OH     | 48110      | USA     | 8991123943 | NULL       | NULL                   | M      | 1967-09-12 |       1 |
+|       36 | Davis     | Goodman   | 2020 Country Rd      | Columbus     | OH     | 48318      | USA     | 8991152882 | 8991128833 | goody@irvingnet.com    | M      | 1980-10-27 |       2 |
++----------+-----------+-----------+----------------------+--------------+--------+------------+---------+------------+------------+------------------------+--------+------------+---------+
+23 rows in set (0.01 sec)
+
+
+
+5. Delete all members who work for the artist 'Sonata' from Members2 table.
+
+mysql> Delete From Members2 where MemberId In ( select MemberID from Artists inner join XrefArtistsMembers on Artists.ArtistId = XrefArtistsMembers.ArtistID where Artists.ArtistName = "Sonata");
+Query OK, 3 rows affected (0.07 sec)
+
+
+mysql> select * from Members2;
++----------+-----------+-----------+-----------------+--------------+--------+------------+---------+------------+------------+----------------------+--------+------------+---------+
+| MemberID | FirstName | LastName  | Address         | City         | Region | PostalCode | Country | HomePhone  | WorkPhone  | EMail                | Gender | Birthday   | SalesID |
++----------+-----------+-----------+-----------------+--------------+--------+------------+---------+------------+------------+----------------------+--------+------------+---------+
+|       10 | Roberto   | Alvarez   | Rt 1            | Anderson     | IN     | 46019      | USA     | 7651552983 | 7651628837 | ral@mightyhostl.com  | M      | 1968-01-18 |       2 |
+|       31 | Jose      | MacArthur | 51444 Vine      | Santa Rosa   | CA     | 99999      | USA     | 6331289393 | NULL       | jmac@dowop.com       | M      | 1978-06-24 |       1 |
+|       13 | Mary      | Chrisman  | 1772 East 117th | Fishers      | IN     | 46123      | USA     | 3171820387 | NULL       | mjc17@daviscorp.com  | F      | 1973-03-01 |       1 |
+|       15 | Warren    | Boyer     | 167 Alamo Dr    | Alverez      | TX     | 75601      | USA     | 8221722883 | NULL       | wbman@uptime.net     | M      | 1969-04-19 |       2 |
+|       32 | Doug      | Finney    | 2020 Dubois     | Savannah     | GA     | 30003      | USA     | 9821222929 | NULL       | fennyd@bitspeed.com  | M      | 1963-08-04 |       3 |
+|       19 | Terry     | Irving    | 18a 7th St      | Tybee Island | GA     | 30004      | USA     | 5411252093 | NULL       | NULL                 | M      | 1959-06-22 |       3 |
+|       21 | Michelle  | Henderson | 201 Bonaventure | Savannah     | GA     | 30005      | USA     | 8221928273 | NULL       | NULL                 | F      | 1964-03-15 |       2 |
+|       34 | William   | Morrow    | PO Box 1882     | New Rochelle | NY     | 10014      | USA     | 9981722928 | NULL       | wmorrow@wmorrow.com  | M      | 1965-03-17 |       2 |
+|       29 | Frank     | Payne     | 5412 Clinton    | New Rochelle | NY     | 10014      | USA     | 9981737464 | NULL       | NULL                 | M      | 1960-01-17 |       1 |
+|       35 | Aiden     | Franks    | 167 East 38th   | Alverez      | TX     | 75601      | USA     | 8321729283 | 8321723833 | kosmo@ispl.com       | M      | 1983-09-02 |       2 |
+|        3 | Bryce     | Sanders   | PO Box 1292     | Peterson     | NC     | 27104      | USA     | 6441824283 | NULL       | bs@cookery.com       | M      | 1966-06-11 |       2 |
+|       14 | Carol     | Wanner    | 787 Airport Rd  | Alverez      | TX     | 75601      | USA     | 6831223944 | NULL       | NULL                 | F      | 1978-11-08 |       3 |
+|       33 | Brian     | Ranier    | 23 Gregory Lane | London       | ONT    | M6Y 2Y7    | Canada  | 6231842933 | NULL       | NULL                 | M      | 1957-10-19 |       3 |
+|       26 | Tony      | Wong      | 115 Maple St    | McKensie     | ONT    | M8H 3T1    | Canada  | 3311692832 | 3311692822 | twong@tamilla.org    | M      | 1955-11-01 |       2 |
+|       18 | Bonnie    | Taft      | RR4             | Alamaba      | VT     | 05303      | USA     | 3721223292 | NULL       | taffygirl@signon.com | F      | 1960-09-21 |       1 |
+|       20 | Louis     | Holiday   | 15 Davis Ct     | Clinton      | IL     | 63882      | USA     | 1451223838 | NULL       | NULL                 | M      | 1969-07-27 |       2 |
+|       22 | Bobby     | Crum      | RR2             | Pine         | VT     | 05412      | USA     | 1831828211 | NULL       | NULL                 | M      | 1965-06-10 |       3 |
+|       28 | Vic       | Cleaver   | 100 Maple       | Reston       | VT     | 05544      | USA     | 8111839292 | NULL       | NULL                 | M      | 1957-02-10 |       2 |
+|       30 | Roberto   | Goe       | 14 Gray Rd      | Columbus     | OH     | 48110      | USA     | 8991123943 | NULL       | NULL                 | M      | 1967-09-12 |       1 |
+|       36 | Davis     | Goodman   | 2020 Country Rd | Columbus     | OH     | 48318      | USA     | 8991152882 | 8991128833 | goody@irvingnet.com  | M      | 1980-10-27 |       2 |
++----------+-----------+-----------+-----------------+--------------+--------+------------+---------+------------+------------+----------------------+--------+------------+---------+
+20 rows in set (0.00 sec)
+
+
+6. Members Doug Finney and Terry Irving are forming a new artist to be called "Doug and Terry." Add this record to the Artists table, using ArtistID 13, the address information of Doug Finney, no web address, today's entry date, and no lead source. Don’t hand-code any data for insert that can be looked up from the Members table.
+
+mysql> Insert Into Artists (ArtistID,ArtistName,City,Region,Country,WebAddress,EntryDate,LeadSource)
+    -> Select 13,"Doug and Terry",City,Region,Country,NULL,CURDATE(),NULL
+    -> From Members2 where FirstName = "Doug" and LastName  = "Finney";
+Query OK, 1 row affected (0.04 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> select * from Artists;
++----------+----------------+--------------+--------+---------+--------------------------+------------+------------+
+| ArtistID | ArtistName     | City         | Region | Country | WebAddress               | EntryDate  | LeadSource |
++----------+----------------+--------------+--------+---------+--------------------------+------------+------------+
+|        1 | The Neurotics  | Peterson     | NC     | USA     | www.theneurotics.com     | 2003-05-14 | Directmail |
+|        2 | Louis Holiday  | Clinton      | IL     | USA     | NULL                     | 2003-06-03 | Directmail |
+|        3 | Word           | Anderson     | IN     | USA     | NULL                     | 2003-06-08 | Email      |
+|        5 | Sonata         | Alexandria   | VA     | USA     | www.classical.com/sonata | 2003-06-08 | Ad         |
+|       10 | The Bullets    | Alverez      | TX     | USA     | NULL                     | 2003-08-10 | Email      |
+|       14 | Jose MacArthur | Santa Rosa   | CA     | USA     | www.josemacarthur.com    | 2003-08-17 | Ad         |
+|       15 | Confused       | Tybee Island | GA     | USA     | NULL                     | 2003-09-14 | Directmail |
+|       17 | The Kicks      | New Rochelle | NY     | USA     | NULL                     | 2003-12-03 | Ad         |
+|       16 | Today          | London       | ONT    | Canada  | www.today.com            | 2003-10-07 | Email      |
+|       18 | 21 West Elm    | Alamaba      | VT     | USA     | www.21westelm.com        | 2003-02-05 | Ad         |
+|       11 | Highlander     | Columbus     | OH     | USA     | NULL                     | 2002-08-10 | Email      |
+|       13 | Doug and Terry | Savannah     | GA     | USA     | NULL                     | 2017-10-29 | NULL       |
++----------+----------------+--------------+--------+---------+--------------------------+------------+------------+
+12 rows in set (0.00 sec)
+
+mysql> 
+
+
+
+7. Add the appropriate new records to the XrefArtistsMembers table for the artist "Doug and Terry" (see #4). Doug is the responsible party. Don’t hand-code any data for insert that can be looked up from the Members table.
+
+mysql> Insert Into XrefArtistsMembers(MemberId,ArtistId,RespParty) Select MemberId,13,0 From Members2 where FirstName = "Doug" and LastName = "Finney";
+Query OK, 1 row affected (0.05 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> select * from XrefArtistsMembers;
++----------+----------+-----------+
+| MemberID | ArtistID | RespParty |
++----------+----------+-----------+
+|       20 |        2 |         1 |
+|       31 |       14 |         1 |
+|        3 |        1 |         1 |
+|       10 |        3 |         1 |
+|       13 |        3 |         0 |
+|        7 |        5 |         1 |
+|        8 |        5 |         0 |
+|        9 |        5 |         0 |
+|       32 |       15 |         0 |
+|       19 |       15 |         1 |
+|       21 |       15 |         0 |
+|       34 |       17 |         1 |
+|       29 |       17 |         0 |
+|       15 |       10 |         1 |
+|       35 |       10 |         0 |
+|       14 |       10 |         0 |
+|       33 |       16 |         1 |
+|       26 |       16 |         0 |
+|       18 |       18 |         1 |
+|       28 |       18 |         0 |
+|       22 |       18 |         0 |
+|       30 |       11 |         1 |
+|       36 |       11 |         0 |
+|       32 |       13 |         0 |
++----------+----------+-----------+
+24 rows in set (0.00 sec)

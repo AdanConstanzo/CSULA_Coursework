@@ -1,0 +1,236 @@
+Subqueries, IN, ANY and ALL
+
+Q1:   List length of the longest RealAud track in the 'metal' genre
+
+
+select max(lengthseconds) from tracks where realaud = 1 && titleid = (select titleId from titles where  genre = "metal");
++--------------------+
+| max(lengthseconds) |
++--------------------+
+|                352 |
++--------------------+
+
+
+
+Q2:  List the artistid, artistname and entrydate of all artists whose entrydate is earlier than everyone who has a 'directmail' leadsource.
+
+select artistid,artistname,entrydate from artists where entrydate <All (select entrydate from artists where leadsource = "directmail");
++----------+-------------+------------+
+| artistid | artistname  | entrydate  |
++----------+-------------+------------+
+|       18 | 21 West Elm | 2003-02-05 |
+|       11 | Highlander  | 2002-08-10 |
++----------+-------------+------------+
+
+
+Q3:  List the artistid, artistname and entrydate of all artists whose entrydate is earlier than anyone who has a 'directmail' leadsource.
+
+ select artistid,artistname,entrydate from artists where entrydate <Any (select entrydate from artists where leadsource = "directmail");
++----------+----------------+------------+
+| artistid | artistname     | entrydate  |
++----------+----------------+------------+
+|        1 | The Neurotics  | 2003-05-14 |
+|        2 | Louis Holiday  | 2003-06-03 |
+|        3 | Word           | 2003-06-08 |
+|        5 | Sonata         | 2003-06-08 |
+|       10 | The Bullets    | 2003-08-10 |
+|       14 | Jose MacArthur | 2003-08-17 |
+|       18 | 21 West Elm    | 2003-02-05 |
+|       11 | Highlander     | 2002-08-10 |
++----------+----------------+------------+
+
+
+Q4:   List the artistname and entrydate of the artist with the earliest entry date.
+
+ select artistname,entrydate from artists where entrydate = (select min(entrydate) from artists);
++------------+------------+
+| artistname | entrydate  |
++------------+------------+
+| Highlander | 2002-08-10 |
++------------+------------+
+
+
+Q5:   List the track titles of all titles in the 'alternative' genre. 
+
+select tracktitle from tracks where titleId in (select titleid from titles where genre = "alternative");
++-----------------------+
+| tracktitle            |
++-----------------------+
+| Hottie                |
+| Goodtime March        |
+| TV Day                |
+| Call Me an Idiot      |
+| 25                    |
+| Palm                  |
+| Front Door            |
+| Where's the Rain      |
+| Bob's Dream           |
+| My Wizard             |
+| Third's Folly         |
+| Leather               |
+| Hot Cars Cool Nights  |
+| Music in You          |
+| Don't Care About Time |
+| Kiss                  |
+| Pizza Box             |
+| Goodbye               |
+| Song 1                |
+| Song 2                |
+| Song 3                |
+| Song 4                |
+| Song 5                |
+| Song 6                |
+| Song 7                |
+| Song 8                |
+| Song 8 and 1/2        |
++-----------------------+
+
+Q6:   List all genres from the Genre table that are not represented in the Titles table. 
+
+ select * from genre where not genre =any (select genre from titles);
++-------+
+| Genre |
++-------+
+| R&B   |
+| rap   |
+| pop   |
++-------+
+
+
+Q7*:  List track titles and lengths of tracks with a length longer than all tracks of the 'metal' genre.
+
+        (Hint: This requires sub-query within a sub-query)
+
+ select tracktitle, lengthseconds from tracks where lengthseconds > all(select lengthseconds from tracks where titleid = (select titleId from titles where genre = "metal"));
++--------------------------------+---------------+
+| tracktitle                     | lengthseconds |
++--------------------------------+---------------+
+| 25                             |           402 |
+| Violin Sonata No. 1 in D Major |           511 |
+| Violin Sonata No. 2 in A Major |           438 |
+| Violin Sonata No. 4 in E Minor |           821 |
+| Piano Sonata No. 1             |           493 |
+| Clarinet Sonata in E Flat      |           399 |
+| Improv 34                      |           441 |
++--------------------------------+---------------+
+
+
+
+
+Q8:   List the track title with longest length in seconds.
+
+select tracktitle from tracks where lengthseconds in (select max(lengthseconds) from tracks);
++--------------------------------+
+| tracktitle                     |
++--------------------------------+
+| Violin Sonata No. 4 in E Minor |
++--------------------------------+
+
+
+
+Equi-join and Inner join: (you are free to choose anyone of the two kinds of joins)
+
+
+
+Q11:   List the CD title and the title of all tracks recorded in StudioID 1
+
+select title,tracktitle
+    -> from titles inner join tracks
+    -> on titles.titleid = tracks.titleid
+    -> where studioid = 1;
++--------------------+------------------+
+| title              | tracktitle       |
++--------------------+------------------+
+| Meet the Neurotics | Hottie           |
+| Meet the Neurotics | Goodtime March   |
+| Meet the Neurotics | TV Day           |
+| Meet the Neurotics | Call Me an Idiot |
+| Meet the Neurotics | 25               |
+| Meet the Neurotics | Palm             |
+| Meet the Neurotics | Front Door       |
+| Meet the Neurotics | Where's the Rain |
+| Neurotic Sequel    | Song 1           |
+| Neurotic Sequel    | Song 2           |
+| Neurotic Sequel    | Song 3           |
+| Neurotic Sequel    | Song 4           |
+| Neurotic Sequel    | Song 5           |
+| Neurotic Sequel    | Song 6           |
+| Neurotic Sequel    | Song 7           |
+| Neurotic Sequel    | Song 8           |
+| Neurotic Sequel    | Song 8 and 1/2   |
++--------------------+------------------+
+
+
+
+Q12:   List each title from the Title table along with the name of the studio where it was recorded.
+
+ select title, studioname
+    -> from titles inner join studios
+    -> on titles.studioid = studios.studioid;
++--------------------+---------------------+
+| title              | studioname          |
++--------------------+---------------------+
+| Meet the Neurotics | MakeTrax            |
+| Smell the Glove    | Lone Star Recording |
+| Time Flies         | Pacific Rim         |
+| Neurotic Sequel    | MakeTrax            |
+| Sonatas            | Lone Star Recording |
+| Louis at the Keys  | Pacific Rim         |
++--------------------+---------------------+
+
+
+Q13:  Find the name of the sales person who work with the member with last name 'Alvarez'
+
+select salespeople.firstname,salespeople.lastname
+    -> from salespeople inner join members
+    -> on salespeople.salesid = members.salesid
+    -> where members.lastname = "Alvarez";
++-----------+----------+
+| firstname | lastname |
++-----------+----------+
+| Lisa      | Williams |
++-----------+----------+
+
+
+Q14:   List name of members from California (CA) and their salespeople.
+
+ 
+ select members.firstname as "Member's First Name" ,members.lastname as "Member's Last Name",salespeople.firstname as "Salesperson's First Name",salespeople.lastname as "Salespersion's Last Name"
+    -> from members inner join salespeople
+    -> on members.salesid = salespeople.salesid
+    -> where region = "CA";
++---------------------+--------------------+--------------------------+--------------------------+
+| Member's First Name | Member's Last Name | Salesperson's First Name | Salespersion's Last Name |
++---------------------+--------------------+--------------------------+--------------------------+
+| Jose                | MacArthur          | Bob                      | Bentley                  |
++---------------------+--------------------+--------------------------+--------------------------+
+
+
+
+Q15:   List the names of all artists who have recorded more than one titles and the number of titles they have.   
+
+ select artistname,count(titles.artistid)
+    -> from artists,titles
+    -> where artists.artistid = titles.artistid
+    -> group by artistname
+    -> having count(titles.artistid) > 1;
++---------------+------------------------+
+| artistname    | count(titles.artistid) |
++---------------+------------------------+
+| The Neurotics |                      2 |
++---------------+------------------------+
+
+Q16:   Report the name of the title and number of tracks for any title with fewer than 9 tracks.
+
+select title,count(tracks.titleid)
+    -> from titles,tracks
+    -> where titles.titleid = tracks.titleid
+    -> group by title
+    -> having count(tracks.titleid) < 9;
++--------------------+-----------------------+
+| title              | count(tracks.titleid) |
++--------------------+-----------------------+
+| Louis at the Keys  |                     8 |
+| Meet the Neurotics |                     8 |
+| Sonatas            |                     5 |
++--------------------+-----------------------+

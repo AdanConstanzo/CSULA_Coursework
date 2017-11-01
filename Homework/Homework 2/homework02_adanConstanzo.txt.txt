@@ -1,0 +1,57 @@
+1. List the number of books, the minimum price, maximum price and the average sales of history books. The format of output is: Number Min Price Max Price Average Sale
+
+ select count(*) as "Number", min(price) as "Min Price",max(price) as "Max Price",avg(sales) as "Average Sale"  from titles where type = "history";
++--------+-----------+-----------+--------------+
+| Number | Min Price | Max Price | Average Sale |
++--------+-----------+-----------+--------------+
+|      3 |     19.95 |     29.99 |    6866.3333 |
++--------+-----------+-----------+--------------+
+
+2. List the number of books and the average number of pages published by pub_id 01.
+
+ select count(*) ,avg(pages) from titles where pub_id = "P01";
++----------+------------+
+| count(*) | avg(pages) |
++----------+------------+
+|        4 |   362.3333 |
++----------+------------+
+
+
+3. List the number of books and the total sales of the books with price greater than $15.
+
+
+select count(*), sum(sales) from titles where price > 15 ;
++----------+------------+
+| count(*) | sum(sales) |
++----------+------------+
+|        6 |    1557786 |
++----------+------------+
+
+
+4. For each book type, list the the number of books and the average price. Sort the results by the number of books
+
+
+Select count(type) , avg(price) from titles group by type order by count(type);
++-------------+------------+
+| count(type) | avg(price) |
++-------------+------------+
+|           1 |  39.950000 |
+|           2 |  11.975000 |
+|           3 |   9.310000 |
+|           3 |  23.976667 |
+|           4 |  18.963333 |
++-------------+------------+
+
+
+5. For each book type, list the book type and the average number of pages in the books with price greater than $10 in each category, excluding the types where the average number of pages is less than 200. Sort the results by the average number of pages.
+
+ select type,avg(pages) from titles where price>10 group by type having avg(pages)>200 order by avg(pages);
++------------+------------+
+| type       | avg(pages) |
++------------+------------+
+| history    |   307.6667 |
+| biography  |   437.6667 |
+| psychology |   510.0000 |
+| computer   |  1226.0000 |
++------------+------------+
+

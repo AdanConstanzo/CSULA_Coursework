@@ -1,0 +1,96 @@
+Q1: List the first name, last name, home phone, and gender of all members from Georgia who either have a home phone in area code 822 or are  female
+
+select firstname,lastname,homephone,gender from members where Region = "GA" and gender = "f" and homephone like "822%";
++-----------+-----------+------------+--------+
+| firstname | lastname  | homephone  | gender |
++-----------+-----------+------------+--------+
+| Michelle  | Henderson | 8221928273 | F      |
++-----------+-----------+------------+--------+
+
+Q2: List all the information of tracks that do have an MP3.
+
+
+select * from tracks where mp3 = 0;
++---------+----------+------------+---------------+------+---------+
+| TitleID | TrackNum | TrackTitle | LengthSeconds | MP3  | RealAud |
++---------+----------+------------+---------------+------+---------+
+|       3 |        7 | Wooden Man |           314 |    0 |       0 |
+|       3 |        8 | UPS        |            97 |    0 |       0 |
+|       3 |        9 | Empty      |           182 |    0 |       0 |
+|       3 |       10 | Burrito    |            65 |    0 |       0 |
++---------+----------+------------+---------------+------+---------+
+
+
+Q3: List the TitleID, Title, and UPC of any titles whose UPC end with '1'
+
+ select titleid,title,upc from titles where upc like "%1";
++---------+-------------------+------------+
+| titleid | title             | upc        |
++---------+-------------------+------------+
+|       6 | Sonatas           | 3999320021 |
+|       7 | Louis at the Keys | 3838227111 |
++---------+-------------------+------------+
+
+
+Q4: List the artist name and web address of any artists who has a web address. Rename the attributes artistname, webaddress as Artist Name, Web Address.
+
+ select artistname as "Artist Name",webaddress as "Web Address" from artists where webaddress is not null;
++----------------+--------------------------+
+| Artist Name    | Web Address              |
++----------------+--------------------------+
+| The Neurotics  | www.theneurotics.com     |
+| Sonata         | www.classical.com/sonata |
+| Jose MacArthur | www.josemacarthur.com    |
+| Today          | www.today.com            |
+| 21 West Elm    | www.21westelm.com        |
++----------------+--------------------------+
+
+
+
+Q5:  List the TitleID, TrackNum, and TrackTitle of all tracks with 'Song' at the beginning of the TrackTitle
+
+ select titleid,tracknum,tracktitle from tracks where tracktitle like "song%";
++---------+----------+----------------+
+| titleid | tracknum | tracktitle     |
++---------+----------+----------------+
+|       5 |        1 | Song 1         |
+|       5 |        2 | Song 2         |
+|       5 |        3 | Song 3         |
+|       5 |        4 | Song 4         |
+|       5 |        5 | Song 5         |
+|       5 |        6 | Song 6         |
+|       5 |        7 | Song 7         |
+|       5 |        8 | Song 8         |
+|       5 |        9 | Song 8 and 1/2 |
++---------+----------+----------------+
+
+
+
+Q6: List all fields from the Tracks for any track whose trackNum is the same as its TitleID
+
+ select * from tracks where TrackNum = TitleID;
++---------+----------+------------+---------------+------+---------+
+| TitleID | TrackNum | TrackTitle | LengthSeconds | MP3  | RealAud |
++---------+----------+------------+---------------+------+---------+
+|       1 |        1 | Hottie     |           233 |    1 |       1 |
+|       3 |        3 | Dweeb      |           273 |    1 |       1 |
+|       4 |        4 | Leather    |           185 |    1 |       1 |
+|       5 |        5 | Song 5     |           198 |    1 |       0 |
+|       7 |        7 | Improv 34  |           441 |    1 |       1 |
++---------+----------+------------+---------------+------+---------+
+
+
+Q7: If the Base field reports the daily base salary of each salesperson, report the Fristname, Lastname, and weekly (5 work days) salary of each salesperson whose weekly salary is less than $1000. The format of the results should be:
+
+First Name  Last Name  Weekly Salary
+
+
+
+select firstname as "First Name", lastname as "Last Name",base*5 as "Weekly Salary" from salespeople where base*5 < 1000;
++------------+-----------+---------------+
+| First Name | Last Name | Weekly Salary |
++------------+-----------+---------------+
+| Bob        | Bentley   |        500.00 |
+| Clint      | Sanchez   |        500.00 |
++------------+-----------+---------------+
+
