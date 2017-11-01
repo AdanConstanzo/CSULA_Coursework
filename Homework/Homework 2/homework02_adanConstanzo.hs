@@ -1,3 +1,4 @@
+import Data.List
 
 --1. 2pts) Create a function, using partial application of functions, that sees if a single Int is divisible by 5.
 --It takes in an Int and returns a Bool. (edited from original to be a bit easier)
@@ -107,3 +108,6 @@ getAllOf x = filter (==x)
 getEveyrthingElse x = filter (/=x)
 getAll [] = []
 getAll (x:xs) = getAllOf(x) (x:xs) : getAll( getEveyrthingElse x (xs))
+
+
+doFinalCall x = sort $ getAll x
