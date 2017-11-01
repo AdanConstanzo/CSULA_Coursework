@@ -1,0 +1,35 @@
+1. (5 pts) A batch of one hundred cars is inspected by testing four randomly selected cars. If one of the four is defective, the batch is rejected. What is the probability that the batch is accepted if it contains five defective cars?
+
+
+This is an example of conditional probability.
+The problem asks for the probability to have the batch be accepted with 5 defective cars in a batch of 100.
+We must randomly, continously pick these cars.
+Therefore, the probability can be evaluated as
+
+P = (95/100) * (94/99) * (93/98) * (92/97) 
+
+P ~~ 0.81 
+
+So there is an 81% chance of the batch being successfully accepted.
+
+
+2. (5 pts) We are given three coins: one has heads in both faces, the second has tails in both faces, and the third has a head in one face and a tail in the other. We choose a coin at random, toss it, and it comes head. What is the probability that the opposite face is tails?
+
+This is an example of Discrete Random Variables.
+The probability of the opoisite face to be tail can be represented as:
+
+Coin is : H(as current face) [H] (as opposite side)
+S = { number of heads from three coins }
+
+H[H]   		T[T]  		 H[T]  
+(pass)		(fail)		(pass)     2/3 passes
+
+S' = { numer of Tails on oposite side from passing two coins}
+
+H[H]				H[T]
+(fail)				(pass)	   1/2 passes
+
+Now we multiply the passing results.
+P =   S   *   S'
+P = (2/3) * (1/2) = 1/3
+

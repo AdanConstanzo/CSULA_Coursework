@@ -1,0 +1,96 @@
+Adan Constanzo
+
+Lab 11
+
+1. (5 pts) An inverted file is a critical data structure for implementing index of book or central components of a search engine. Given document D, which can be viewed as an un-ordered numbered list of words, an inverted file is an ordered list of words L, such that, for each word w in L, we store the indices of the places in D where w appears. Design an efficient algorithm for constructing L from D and an efficient underlying data structure.
+
+A hash table would be the ideal data structure for this problem.
+Since hash tables in theory effectively run on a time complexity of O(1) this would be the 
+optimal choice in picking a data structure for search.
+
+The underline data structure is an array. To perform perfect hashing (avoid colision [ hash function hitting same key] )
+the result would be to heavy on memeory. Therefore a better solution to collision would be to do it by linking.
+
+In addition, we can also store an object containg infomration on where the data is stored and so on.
+
+
+The hash table would than contain a key,value of the key being the work and the value being
+an arraylist of objects that which contains the position base on paragraph, page, and frequency.
+
+The pseudo code, 
+Word{
+    double paragraphNum;
+    double lineCount;    
+    static count wordCount; 
+}
+
+
+fileToMap(file):
+    map = new HashMap(String,Word);
+    readFile = open(file,"r")
+    lineCount = 0;
+    paragraphNum = 0;
+
+
+    while(readFile)
+        lineCount++        
+        line = readFile.getLine()
+        while(line)
+            word = readNext()
+            map.insert(word,new Word(lineCount,paragraphNum) )
+            if line == ""
+               paragraphNum += 1
+
+
+When inserting, the new Word object would be pushed into the array as follow
+
+map.insert( word,new Word ) :
+    if map.find(word)   
+        map.find(word).add(Word);
+        return;
+    map.createUniqueHash()
+      
+where map.find(word) will return an array list of the  Word object.
+
+and createUniqueHas can be resolved by doing either by linking (linked list of same key) or by doing a perfect hash (heavy on space).
+
+
+2. (5 pts) Like a map, a multi-map stores entries that are key-value pair (k, v), where k is the key and v is the value. Whereas a map insists that entries have unique keys, a multi-map allows multiple entries to have the same key, much like an English dictionary, which allows multiple definitions for the same word. That is we will allow a multi-map to contain entries (k, v) and (k, v') having the same key.
+
+Now, design an efficient multi-map data structure for storing n entries whose m distinct keys having distinct hash code, and m < n. Your data structure should perform the following operation in O(1) time.
+
+get(k) : return a collection of all values associated with key k
+put(k, v) add a new entry to your multi-map
+remove(k, v) remove an entry 
+removeAll(k)
+
+
+Once again, we can use the idea from the previous question of using a hash table.
+
+However, this time instead of handeling our colision with a linked list we can primarly focus on
+doing the perfect hash operation (heavy on memory).
+
+Therefore, we will be generating a second hash table within a key.
+
+Finally, we can have another hash table withing the hash table. Thus resulting in three hash tables.
+
+Thus every operation will be all in O(1).
+
+getKey(k):
+    return map.find(k) // returns a hashmap of all keys
+put(k,v):
+    map.find(k).insert(v) // gets hashmap of key and inserts to another map with value.
+remove(k,v):
+    map.find(k).find(v).remove(v) // get hahsmap of hashmap and deltes it by setting to null (can't delete key only set it to null)
+
+removeAll(k):
+    map.find(k) = Null // sets the whole value of the hash map to null.
+
+
+
+
+
+
+
+
+

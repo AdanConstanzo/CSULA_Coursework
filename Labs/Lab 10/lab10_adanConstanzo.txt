@@ -1,0 +1,31 @@
+1. (5 pts) Design an efficient algorithm for finding the ten largest element in an array of size n. Your algorithm should run in O(n) times where n >= 10.
+
+Since the complexity of the algorithm must be at O(n), the best solution is to be done with Couting Sort.
+Counting sort's time complexity is O(n) time.
+The sudo code would be. 
+
+Counting Sort(A,B,K)
+
+let c [0..k] be a new array
+for i = 0 to k
+	c[i] = 0
+for i =1 to A.length
+	c[A[i]] = c[A[i]] +1
+for i =1 to k
+	c[i] = c[i] + c[i-1]
+for j = A.length down to 1
+	B[c[A[j]]] = A[j]
+	c[A[j]] = c[A[j]] -1
+
+The algorith contains four loops, therefore the complexity is O(4n) => O(n).
+
+
+Then after applying this algorithm, we can gather the last 10 elements with a simple loop.
+
+
+2. (5 pts) You are given an array of integers, where different integers may have different numbers of digits, but the total number of digits over all the integers in the array is n. Design an algorithm to sort the array in O(n) times.
+
+For this problem the best solution is to apply Radix Sort.
+Since the total of digits is n, every number has at most n. Therefore the procces takes at least n time.
+Since Radix sort works by creating 10 bucks (0-9) we can then sort the numbers by putting them in the correct assigned bucket.
+The process of steps in done with one loop,In conclusion, the complexity is n.

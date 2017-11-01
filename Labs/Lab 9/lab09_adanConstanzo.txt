@@ -1,0 +1,23 @@
+1. (5 pts) Design an algorithm running O(n2) time to solve this problem.
+
+
+To create an algorithm that has the time complexity of O(n^2)
+we simply need to pick a red jug, then go through each individual
+mug and when we find the corresponding jug put them on asside.
+This will result in a O(n^2).
+
+2. (5 pts) Design an algorithm running O(n log n) time to solve an average case..
+
+To achieve a run time of O(n log n ) we must use the quick sort method.
+The first thing to achieve a quick sort speed is to first permutate each indivial group of jugs.
+By following the order of a heap-tree.
+We first find the max, then we partition the group of jugs and then 
+repeat untill we have a heap of jugs.
+The time complexity will result in O (n log n)
+
+3. (5 pts) Design a randomized algorithm running O(n log n) time to solve the grouping water-jug problem.
+
+Once again we can implement the same approach from the previous question.
+The only difference is when we partion the group it will be selected randomly.
+Thus resulting the the same proccess of first setting.
+
