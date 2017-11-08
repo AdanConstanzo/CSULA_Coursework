@@ -1,0 +1,148 @@
+1. Create two new restaurants. Insert them into your new database. Fill out all information about the restaurant, as seen in the insert example above.
+
+
+db.restaurants.insert(
+   {
+      "address" : {
+         "street" : "1525 La Madera",
+         "zipcode" : "91700",
+         "building" : "25",
+         "coord" : [ -73.9557413, 40.7720266 ]
+      },
+      "borough" : "El Monte",
+      "cuisine" : "Mexican",
+      "grades" : [
+         {
+            "date" : ISODate("2014-10-01T00:00:00Z"),
+            "grade" : "A",
+            "score" : 11
+         },
+         {
+            "date" : ISODate("2014-01-16T00:00:00Z"),
+            "grade" : "A",
+            "score" : 17
+         }
+      ],
+      "name" : "El Monte Mexican Food CO",
+      "restaurant_id" : "4170462011"
+   }
+);
+
+db.restaurants.insert(
+   {
+      "address" : {
+         "street" : "1526 La Madera",
+         "zipcode" : "91700",
+         "building" : "26",
+         "coord" : [ -73.9557413, 40.7720266 ]
+      },
+      "borough" : "El Monte",
+      "cuisine" : "Korean",
+      "grades" : [
+         {
+            "date" : ISODate("2014-10-01T00:00:00Z"),
+            "grade" : "A",
+            "score" : 11
+         },
+         {
+            "date" : ISODate("2014-01-16T00:00:00Z"),
+            "grade" : "B",
+            "score" : 1
+         }
+      ],
+      "name" : "El Monte Korean Food BBQ CO",
+      "restaurant_id" : "4170462012"
+   }
+);
+
+WriteResult({ "nInserted" : 1 })
+WriteResult({ "nInserted" : 1 })
+
+ db.restaurants.count()
+25361
+
+
+
+2. Update the two restaurants that you just inserted to have addresses of "123 Fake Street" for the first restaurant, and "456 Not Fake Avenue" for the second. You will need to use two update queries for this question.
+
+db.restaurants.update({"restaurant_id":"4170462012"},{ $set:{"address.street":"123 Fake Street"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+db.restaurants.find({"restaurant_id":"4170462012"}).pretty()
+{
+	"_id" : ObjectId("5a02a7ba2925459f0023df3f"),
+	"address" : {
+		"street" : "123 Fake Street",
+		"zipcode" : "91700",
+		"building" : "26",
+		"coord" : [
+			-73.9557413,
+			40.7720266
+		]
+	},
+	"borough" : "El Monte",
+	"cuisine" : "Korean",
+	"grades" : [
+		{
+			"date" : ISODate("2014-10-01T00:00:00Z"),
+			"grade" : "A",
+			"score" : 11
+		},
+		{
+			"date" : ISODate("2014-01-16T00:00:00Z"),
+			"grade" : "B",
+			"score" : 1
+		}
+	],
+	"name" : "El Monte Korean Food BBQ CO",
+	"restaurant_id" : "4170462012"
+}
+> 
+
+ db.restaurants.update({"restaurant_id":"4170462011"},{ $set:{"address.street":"456 Not Fake Avenue"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+
+ db.restaurants.find({"restaurant_id":"4170462011"}).pretty()
+{
+	"_id" : ObjectId("5a02a7b92925459f0023df3e"),
+	"address" : {
+		"street" : "456 Not Fake Avenue",
+		"zipcode" : "91700",
+		"building" : "25",
+		"coord" : [
+			-73.9557413,
+			40.7720266
+		]
+	},
+	"borough" : "El Monte",
+	"cuisine" : "Mexican",
+	"grades" : [
+		{
+			"date" : ISODate("2014-10-01T00:00:00Z"),
+			"grade" : "A",
+			"score" : 11
+		},
+		{
+			"date" : ISODate("2014-01-16T00:00:00Z"),
+			"grade" : "A",
+			"score" : 17
+		}
+	],
+	"name" : "El Monte Mexican Food CO",
+	"restaurant_id" : "4170462011"
+}
+> 
+
+
+
+3. Delete the two restaurants from the database.
+
+ db.restaurants.remove({"restaurant_id":"4170462011"})
+WriteResult({ "nRemoved" : 1 })
+> db.restaurants.remove({"restaurant_id":"4170462012"})
+WriteResult({ "nRemoved" : 1 })
+
+
+db.restaurants.count()
+25359
