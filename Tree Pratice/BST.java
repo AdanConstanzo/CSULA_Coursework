@@ -1,84 +1,105 @@
-public class BST{
+public class BST {
 
-	public int value;
-	public BST left = null;
-	public BST right = null;
-	public BST parent = null;
+	public node root;
 
-	public BST(int value) {
-		this.value = value;
+	public BST(node root){
+		this.root = root;
 	}
 
-	// prints in order with recursion.
-	// put root as BST
-	public  static void IN_ORDER_PRINT(BST x) {
-		if(x != null) {
-			IN_ORDER_PRINT(x.left);
-			System.out.println(x.value);
-			IN_ORDER_PRINT(x.right);
+	public void IN_ORDER_PRINT(node a){
+		if(a != null) {
+			IN_ORDER_PRINT(a.left);
+			System.out.println(a.value);
+			IN_ORDER_PRINT(a.right);
 		}
 	}
 
-	// does binary tree-seach
-	// Time complexity based on height of tree.
-	// return BST node.
-	public static BST TREE_SEARCH(BST x, int k) {
-		if(x == null || x.value == k) {
-			return x;
-		}
-		if(k < x.value) {
-			return TREE_SEARCH(x.left,k);
-		} else {
-			return TREE_SEARCH(x.right,k);
-		}
-	}
-
-	// Itterative approach to Tree Search.
-	// Uses less memory.
-	public static BST Iterative_TREE_SEARCH(BST x, int k) {
-
-		while (x != null && k != x.value) {
-			System.out.println("hit");
-			if (k < x.value) {
-				x = x.left;
+	public  node FIND (node a,int value) {
+		while (a != null && value != a.value) {
+			if (value < a.value) {
+				a = a.left;
 			} else {
-				x = x.right;
+				a = a.right;
 			}
 		}
-		return x;	
+		return a;
 	}
 
+	public node MAXIMUM(node a){
+		while (a.right != null) {
+			a = a.right;
+		}
+		return a;
+	}
 
-	public static void insertTree (BST x, int num) {
-		BST node = new BST(num);
+	public node MINIMUM (node a) {
+		while (a.left != null) {
+			a = a.left;
+		}
+		return a;
+	}
 
-		BST track = null;
+	public node TREE_SUCCESSOR (node a) {
+		if (a.right != null) {
+			return MINIMUM(a.right);
+		}
+		node temp = a.parent;
+		while (temp != null && a == temp.right) {
+			a = temp;
+			temp = temp.parent;
+		}
+		return temp;
+	}
 
-		// itterating through tree
-		while (x != null) {
-			track = x;
-			if (node.value <= x.value) {
-				x = x.left;
+	public void IterateInsert(node root,int a){
+		node temp = new node(a);
+		node track = null;
+		while (root != null) {
+			track = root;
+			if (a < root.value) {
+				root = root.left;
 			} else {
-				x = x.right;
+				root = root.right;
 			}
 		}
-
-		if (node.value <= track.value) {
-			track.left = node;
+		temp.parent = track;
+		if(a < track.value) {
+			track.left = temp;
 		} else {
-			track.right = node;
+			track.right = temp;
 		}
-
 	}
 
-	public static BST getMin (BST x) {
-
-		while ( x.left != null ){
-			x = x.left;
+	public void TRANSPLANT(BST T,node u, node v){
+		if (u.parent == null) {
+			T.root = v;
+		} else if (u == u.left.parent.left) {
+			u.parent.left = v;
+		} else {
+			u.parent.right = v;
 		}
 
-		return x;
+		if (v != null) {
+			v.parent = u.parent;
+		}
+	}
+
+	public void TREE_DELETE (BST T, node z) {
+		if (z.left == null) {
+			TRANSPLANT(T,z,z.right);
+		} else if (z.right == null) {
+			TRANSPLANT(T,z,z.left);
+		} else {
+			node y = MINIMUM(z.right);
+			if (y.parent != z) {
+				TRANSPLANT(T,z,y);
+				y.right = z.right;
+				y.right.parent = y;
+			}
+			TRANSPLANT(T,z,y);
+			y.left = z.left;
+			y.left.parent = y;
+		}
 	}
 
 }

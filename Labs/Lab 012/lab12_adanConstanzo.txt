@@ -1,0 +1,50 @@
+1. (4 pts) In binary search tree (BST),
+
+What is the maximum number of nodes in BST of height h?
+
+The maximum number of nodes is dependent on the height of the tree.
+Therefore the nodes is 2 ^ (h+1) - 1 .
+
+What is the minimum number of nodes in BST of height h?
+
+The minimum number of nodes is dependent on the height of the tree.
+Therefore the node is h +1
+
+What is the maximum height of BST T containing n nodes?
+
+The maximum height is N -1
+It can be accomplished by having a tree insert numbers that are either continouslly less than the previous or continouslly greater than the previous.
+
+What is the minimum height of BST T containing n nodes?
+
+The minimum heigh is lg n .
+It can be accomplished by inserting the perfect nodes, resulting in a balanced bst.
+
+2. (3 pts) Professor Sue thinks she has discovered a remarkable property of binary search trees. Suppose that the search for key k in a binary search tree ends up in a leaf. Consider three sets: A, the keys to the left of the search path; B, the keys on the search path; C, the keys to the right of the search path. Professor Sue claims that any tree keys a∈A,b∈B,c∈Ca∈A,b∈B,c∈C must satisfy a≤b≤c.a≤b≤c. If you think this is incorrect, prove it by finding a counterexample.
+
+This idea that a <= b <= c where a is consider left , b is conser root, and c is consider right is an accurate statement
+because this is the nature of the binary search tree. However, in the problem set,
+it mentions the use of a leaf. The property of a leaf does not contain any children and thus resulting in a failure 
+of having this property be a complete one.
+
+
+3. (2 pts) Write the TREE-PREDECESSOR algorithm.
+
+TREE-PREDECESSOR(x)
+	if x.left != nil
+		return TREE-MAXIMUM(x.left)
+	y = x.p
+	while y != nil and x == y.left
+		x = y
+		y = y.p
+	return y
+
+
+4. (1 pts) Show that if a node in a BST has two children, then its successor has no left child and its predecessor has no right child.
+
+The TREE-SUCCESOR alrogithm states that if a current node contains a right sub-tree 
+then the current node succesor is the TREE-MINIMUM which results in a node that contains no other child.
+If there is no right sub-tree, then we can evalue by doing a loop and basically stopping as soon as we find a node with a right sub-tree parent.
+
+The TREE-PREDECESSOR alrogithm works in a similar way as the TREE-SUCCESOR.
+Instead of checking the right sub-tree it approaches the direction of the left.
