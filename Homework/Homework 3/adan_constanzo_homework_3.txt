@@ -1,0 +1,76 @@
+1) Insert an object containing name of 'Eric', age of 25 and position of 'lecturer' to users collection
+
+db.users.insert( { name: "Eric", age: 25, position: "lecturer" } )
+WriteResult({ "nInserted" : 1 })
+
+
+2) Insert another user object containing name of 'Alice', age of 20, position of 'student' and grade of 84 to userscollection
+
+db.users.insert({
+... name:"Alice",
+... age:20,
+... position: "student",
+... grade: 84 })
+WriteResult({ "nInserted" : 1 })
+
+
+
+3) Insert another user object containing name of 'Bob', age of 21, position of 'student' and grade of 89 to userscollection
+
+db.users.insert({ name:"Bob", age:21, position: "student", grade: 89 })
+WriteResult({ "nInserted" : 1 })
+
+
+4) Find all documents under users collection
+
+ db.users.find()
+{ "_id" : ObjectId("5a12582bc50c1d5ec312bd94"), "name" : "Eric", "age" : 25, "position" : "lecturer" }
+{ "_id" : ObjectId("5a12585ec50c1d5ec312bd95"), "name" : "Alice", "age" : 20, "position" : "student", "grade" : 84 }
+{ "_id" : ObjectId("5a125889c50c1d5ec312bd96"), "name" : "Bob", "age" : 21, "position" : "student", "grade" : 89 }
+
+
+5) Find user name of 'Eric'
+
+db.users.find({name:"Eric"})
+{ "_id" : ObjectId("5a12582bc50c1d5ec312bd94"), "name" : "Eric", "age" : 25, "position" : "lecturer" }
+
+
+6) Find users of age between 20 to 23 (inclusive)
+
+db.users.find({ $and: [ {age: {$gt:19} }, { age: { $lt: 24 } } ] } ) 
+{ "_id" : ObjectId("5a12585ec50c1d5ec312bd95"), "name" : "Alice", "age" : 20, "position" : "student", "grade" : 84 }
+{ "_id" : ObjectId("5a125889c50c1d5ec312bd96"), "name" : "Bob", "age" : 21, "position" : "student", "grade" : 89 }
+
+
+7) Update user object of 'Alice' to grade 95
+
+db.users.update({name:"Alice"},{$set: {grade:95}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+
+8) Delete user 'Bob'
+
+db.users.remove({name:"Bob"})
+WriteResult({ "nRemoved" : 1 })
+
+
+
+9) Update user of position 'student' to have a new field called homeAddress containing of follwing json:
+
+ {
+     street: '1234 Random st.',
+     city: 'Los Angeles',
+     state: 'CA'
+ }
+Hint: https://docs.mongodb.com/manual/reference/sql-comparison/#create-and-alter
+
+
+db.users.updateMany(
+    {position : "student" },
+    { $set: { homeAddress:  { street: '1234 Random st.', city: 'Los Angeles',state: 'CA' } } }
+)
+
+
+10) Drop users collection
+
+db.people.drop()
