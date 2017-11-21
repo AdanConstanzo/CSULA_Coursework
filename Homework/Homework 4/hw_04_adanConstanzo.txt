@@ -1,0 +1,66 @@
+Import by 
+
+mongoimport --db test --collection pitching --drop --type csv --headerline --file THE_PATH_TO/pitching.csv
+
+
+1) Find out the number of rows are in the collection pitching
+
+db.pitching.count()
+44139
+
+
+2) Count the number of records that are in the year of 1872
+
+db.pitching.find({year:1872}).count()
+23
+
+
+3) Count the number of records that is between year of 1870 to 1880
+
+db.pitching.find({$and:[{year:{$gt:1869}},{year:{$lt:1881}}]}).count()
+265
+
+4) Which player_id has the highest ipouts?
+
+db.pitching.aggregate([
+	{
+		$match:{ipouts:{$exists: true,"$ne": ""}}
+	},
+	{
+		$group:{ _id:"$player_id",max:{$max:"$ipouts"}}
+	},
+	{
+		$sort:{max: -1},
+	},
+	{
+		$limit:1
+	}
+])
+
+{ "_id" : "whitewi01", "max" : 2040 }
+
+
+5) Find the average year in the whole pitching collection
+
+db.pitching.aggregate([{$group: {_id:null, year: {$avg:"$year"} } }])
+
+6) Group the players by year and return the average ipouts per year
+
+db.pitching.aggregate([
+	{
+		$group:{ _id:"$year",avg:{$avg:"$ipouts"}}
+	}
+])
+
+
+
+7) Order the team_id by the number of players in the team and group by year
+
+db.pitching.aggregate([
+	{
+		$group:{ _id:{year:"$year",team_id:"$team_id"} }
+	},
+	{
+		$group: { _id:"$_id.team_id", count:{$sum:1} }
+	}
+])
