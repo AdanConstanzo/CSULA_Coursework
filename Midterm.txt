@@ -1,0 +1,129 @@
+Adan Constanzo
+Q1:
+
+Primary keys are used for to select candidate keys as the primary key.
+One example of a primary key in the Lyrics database is Artists
+
+
+Q2:
+
++--------------------+
+| Tables_in_lyrics   |
++--------------------+
+| Artists            |
+| Genre              |
+| Members            |
+| SalesPeople        |
+| Studios            |
+| Titles             |
+| Tracks             |
+| XrefArtistsMembers |
++--------------------+
+
+
+Q3:
+
+In an inner join, the corresponding fields do not need to have the same names.
+
+
+Q4:
+
+Atomicity is important because it provides the guarantee that all transactions must be either complete or done.
+
+
+Q5:
+
+The query shows all title rows where the Genre is Jazz from the titles column.
+
+
+Q6:
+
+The query show two columns of Titles and the studio names where the rows represent a relationship form  the title and where it was created by the studio. In addition it is order by the ID of the studio.
+
+
+Q7:
+
+The query shows the lastname, firstname, region, birthday from the Members column where their emails do not equal null.
+
+Q8:
+
+The query is displaying the  Sales.firstname as EmpFirst, Sales.lastname as EmpLast, Sup.Firstname as SupFirst, Sup.Lastname as SupLast from the columns Salespeople and sales and combinding the if the Supervisor is equal to the SalesID
+
+Q9:
+
+The query displays the Region,Gender and count of Members  from the Member Column where the Email is null and then groups it by the region and gender order. 
+
+
+Q10:
+select ArtistName from Artists where WebAddress is null and LeadSource = "Directmail";
++---------------+
+| ArtistName    |
++---------------+
+| Louis Holiday |
+| Confused      |
++---------------+
+
+
+Q11:
+
+select FirstName,LastName,Region from Members where  WorkPhone is null and ( Email like  "t%" or Email like "w%");
++-----------+----------+--------+
+| FirstName | LastName | Region |
++-----------+----------+--------+
+| Warren    | Boyer    | TX     |
+| William   | Morrow   | NY     |
+| Bonnie    | Taft     | VT     |
++-----------+----------+--------+
+
+
+Q12:
+
+select Titles.titleId, Avg(LengthSeconds)/60 from Titles inner join Tracks on Titles.titleid = Tracks.titleid group by Tracks.titleid;
++---------+-----------------------+
+| titleId | Avg(LengthSeconds)/60 |
++---------+-----------------------+
+|       1 |            4.66041667 |
+|       3 |            3.54833333 |
+|       4 |            3.68833333 |
+|       5 |            3.86481481 |
+|       6 |            8.87333333 |
+|       7 |            5.15833333 |
++---------+-----------------------+
+
+
+Q13:
+
+select FirstName,LastName from Artists inner join XrefArtistsMembers on Artists.ArtistID = XrefArtistsMembers.ArtistId inner join Members on XrefArtistsMembers.MemberId = Members.MemberId where Artists.ArtistName = "Today";
++-----------+----------+
+| FirstName | LastName |
++-----------+----------+
+| Brian     | Ranier   |
+| Tony      | Wong     |
++-----------+----------+
+
+
+
+Q14:
+
+select ArtistName, FirstName,LastName from Artists inner join XrefArtistsMembers on Artists.ArtistID = XrefArtistsMembers.ArtistId inner join Members on XrefArtistsMembers.MemberId = Members.MemberId where Members.FirstName like "D%";
++------------+-----------+----------+
+| ArtistName | FirstName | LastName |
++------------+-----------+----------+
+| Confused   | Doug      | Finney   |
+| Highlander | Davis     | Goodman  |
++------------+-----------+----------+
+
+
+
+Q15:
+
+ select Title, avg(LengthSeconds)/60 from Titles inner join Tracks on Titles.titleid = Tracks.titleid group by Title having avg(Tracks.LengthSeconds)/60 > 4;
++--------------------+-----------------------+
+| Title              | avg(LengthSeconds)/60 |
++--------------------+-----------------------+
+| Louis at the Keys  |            5.15833333 |
+| Meet the Neurotics |            4.66041667 |
+| Sonatas            |            8.87333333 |
++--------------------+-----------------------+
+3 rows in set (0.00 sec)
+

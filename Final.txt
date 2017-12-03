@@ -1,0 +1,115 @@
+Part 1: Short answers
+
+Q1. What is a primary key used for? Can you give me an example of a primary key in restaurants collection?
+
+A primary key is used to retrieve a value from an JSON object in Mongodb collection.
+An example would be.
+
+ "name": "Adan Constanzo"
+
+where the primary key would be name.
+
+Q2. What is JSON? Can you give an example of a JSON object.
+
+JSON is short for JavaScript Object Notation.
+It's a way to store information in an organized, easy-to-access manner.
+Data can be stored with a key,value relationship
+An example of Json is
+{
+	"address": {
+		"building": "10000",
+		"street": "Other Street"
+	}
+}
+
+Q3. What does CRUD stand for? Give an example of 2 of the operations used in MongoDB.
+CRUD stands for Create Read Update Delete
+This is an example of Read.
+db.users.find({age: {$gt: 18}})
+This is an example of Create.
+db.users.insert({name: "sue", age: 26, status: "A"})
+
+Part 2: I will give you MongoDB queries and you must describe what they do.
+
+Q4. db.users.find(
+	{$or: [{firstname: "Randy"}, {lastname: moss}]}
+)
+
+This query finds in the users collection a user with 
+either the firstname key to equal "Randy" or the lastname key 
+to equal "moss".
+
+Q5. db.cars.find(
+	{make: "Honda"},
+	{make: 1, year: 1}
+)
+
+The query finds in the cars collection a make with the value "Honda"
+and the only presents the make, year, and _id of the document.
+
+Q6. db.restaurants.find(
+	{make: "Honda"},
+	{make: 1, year: 1, _id: 0}
+)
+
+This is an empty query.
+There should be no restaurant with  "make" as a key.
+As a result, outputing nothing.
+
+Q7. db.restaurants.update(
+	{cuisine: "Japanese"},
+	{$set: {
+			address: {
+				street: "A new street name"
+			}
+		}
+	},
+	{multi: true}
+)
+
+This query finds in the restaurants collection all cuisines that are Japanese
+Then it sets all the address of those restuarnts to
+{street: "A new street name"}
+multi allows it to do it to all of the collections.
+
+Part 3: Use the Restaurants collection to create a query that satisfies the question.
+
+Q8. Find all of the restaurants that have a cuisine of “Bakery”
+
+db.restaurants.find({"cuisine":"Bakery"})
+691
+
+Q9.  Count how many restaurants have a cuisine of “Bakery”
+
+db.restaurants.find({"cuisine":"Bakery"}).count()
+
+Q10. Update the address field for restaurants that have a cuisine of “Bakery” to be the following:
+
+"address": {
+                "building": "10000",
+                "coord": [
+                        -50,
+                        2
+                ],
+                "street": "Other street",
+                "zipcode": "99999"
+        }
+
+db.restaurants.update(
+	{cuisine: "Bakery"},
+	{$set: {
+			address: {
+                "building": "10000",
+                "coord": [
+                        -50,
+                        2
+                ],
+                "street": "Other street",
+                "zipcode": "99999"
+            }
+		}
+	},
+	{multi: true}
+)
+
+WriteResult({ "nMatched" : 691, "nUpserted" : 0, "nModified" : 691 })
