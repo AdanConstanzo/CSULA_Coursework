@@ -1,0 +1,18 @@
+1. (5 pts) A cycle is a path that starts and ends at the same vertex, 
+and that includes at least one edge. Your task is to design an algorithm to 
+determine if a graph contains any cycle.
+
+We can use BFS
+
+2. (5 pts) A graph is connected if , for any two vertices, 
+there is a path between them. Your task is to design an algorithm to 
+determine if a graph is connected.
+
+So if we go throught each individual node we add it to a stack.
+Then we can compare the node size and the stack size. If they are equal then they are connected.
+
+Extra Credit (5 pts)
+
+Say that a maze is constructed correctly if there is one path from the start to the finish, the entire maze is reachable from the start, and there are no loops around any portion of the maze. Given a maze drawn n X n grid, design an algorithm to determine if the maze is constructed correctly. Your algorithm should run in O(n) times.
+
+Upload

@@ -1,0 +1,10 @@
+1. (5 pts) NASA wants to link n stations spread over 
+the country using communication channels. Each pair of stations has a 
+different bandwidth available, which is known a priori. NASA wants to 
+select n-1 channels in such a way that all the stations are linked by the 
+channels and the total bandwidth is the maximum. Design an efficient 
+algorithm to solve this problem in O(n log n) time.
+
+
+A modificiation of the Kruslkal algorithm will be sufficient to obtain a O (n lg n) time complexity
+By sorting them in decreasing order we can accomplish our goal.
