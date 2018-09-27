@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Travis Test Application</string>
+    <string name="greeting">Stoked about Travis testing!</string>
+    <string name="hello_world">Hello World</string>
+</resources>
