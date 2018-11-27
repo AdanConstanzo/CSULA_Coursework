@@ -45,8 +45,8 @@ Q-Values at iteration 0 for action 'east' are correct.   Student/correct solutio
         __________      illegal   __________
 """
 
-Q-Values at iteration 0 for action 'south' are correct.   Student/correct solution:
-	q_values_k_0_action_south: """
+Q-Values at iteration 0 for action 'west' are correct.   Student/correct solution:
+	q_values_k_0_action_west: """
         __________      illegal   __________
            illegal       0.0000      illegal
            illegal       0.0000      illegal
@@ -78,8 +78,8 @@ Q-Values at iteration 0 for action 'exit' are correct.   Student/correct solutio
         __________       0.0000   __________
 """
 
-Q-Values at iteration 0 for action 'west' are correct.   Student/correct solution:
-	q_values_k_0_action_west: """
+Q-Values at iteration 0 for action 'south' are correct.   Student/correct solution:
+	q_values_k_0_action_south: """
         __________      illegal   __________
            illegal       0.0000      illegal
            illegal       0.0000      illegal
@@ -103,8 +103,8 @@ Q-Values at iteration 1 for action 'east' are correct.   Student/correct solutio
         __________      illegal   __________
 """
 
-Q-Values at iteration 1 for action 'south' are correct.   Student/correct solution:
-	q_values_k_1_action_south: """
+Q-Values at iteration 1 for action 'west' are correct.   Student/correct solution:
+	q_values_k_1_action_west: """
         __________      illegal   __________
            illegal       0.0000      illegal
            illegal       0.0000      illegal
@@ -147,8 +147,8 @@ Q-Values at iteration 1 for action 'exit' are NOT correct.   Student solution:
         __________       0.0000   __________
 """
 
-Q-Values at iteration 1 for action 'west' are correct.   Student/correct solution:
-	q_values_k_1_action_west: """
+Q-Values at iteration 1 for action 'south' are correct.   Student/correct solution:
+	q_values_k_1_action_south: """
         __________      illegal   __________
            illegal       0.0000      illegal
            illegal       0.0000      illegal
