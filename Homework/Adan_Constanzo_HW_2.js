@@ -19,7 +19,7 @@ It should additionally use template literals syntax when printing to the console
 const group1 = {
 	name: 'Justice League',
 	leader: 'Wonder Woman',
-	members: ['Batman']
+	members: ['Batman', 'Superman']
 }
 
 const group2 = {
@@ -27,19 +27,24 @@ const group2 = {
 	members: ['Hulk', 'Thor', 'Captain America']
 }
 
-const createAnd = (arr) =>{
+const FormatMembers = (arr) =>{
 	let str = "";
 	arr.forEach((ele, i) => {
-		(i === arr.length -1 && arr.length > 1) ? str += `and ${ele}` : str += `${ele} `
+		if (i === arr.length -1 && arr.length > 1) {
+			str += `and ${ele}`
+		} else if (i === arr.length - 2 || arr.length === 1) {
+			str += `${ele} `
+		} else {
+			str += `${ele}, `
+		}
 	})
 	return str;
 }
 
-const print = (obj) => {
-	const {name, leader, members} = obj;
+const print = ({name = "", leader = "", members = []}) => {
 	console.log(`Team: ${name}`);
-	console.log(`Leader: ${leader ? leader: ''}`);
-	console.log(`Members: ${createAnd(members)}\n`)
+	console.log(`Leader: ${leader}`);
+	console.log(`Members: ${FormatMembers(members)}\n`)
 }
 
 print(group1)
@@ -83,8 +88,7 @@ class Cart {
 			this.total = 0
 	}
 
-	addItem(obj) {
-		const {item, quantity} = obj;
+	addItem({item = "", quantity = 0}) {
 		this.items.push({ item: item.toLowerCase(), quantity });
 		return this;
 	}
