@@ -88,8 +88,8 @@ class Cart {
 			this.total = 0
 	}
 
-	addItem({item = "", quantity = 0}) {
-		this.items.push({ item: item.toLowerCase(), quantity });
+	addItem({item = "", quantity = 0, price ="n/a"}) {
+		this.items.push({ item: item.toLowerCase(), quantity, price });
 		return this;
 	}
 
@@ -124,7 +124,7 @@ class Cart {
 	addTotal() {
 		this.total = 0;
 		this.items.forEach(ele => {
-			if (ele.price) {
+			if (!isNaN(Number.parseInt(ele.price))) {
 				this.total += Number.parseInt(ele.quantity) * ele.price
 			}
 		})
@@ -135,7 +135,7 @@ class Cart {
 
 	get print() {
 		this.items.forEach(ele =>{
-			console.log(`Item: ${ele.item} | Quantity: ${ele.quantity} | Price: ${ele.price ? ele.price : 'n/a'}`)
+			console.log(`Item: ${ele.item} | Quantity: ${ele.quantity} | Price: ${ele.price}`)
 		})
 		console.log(`Total: ${this.total}`);
 	}
